@@ -1,72 +1,90 @@
-<title>LOL Letters</title>
+<title>Petal Post</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0221;
-    --bg-2: #1a0b3d;
-    --card: #1a0b3d;
-    --card-2: #241456;
-    --ink: #f5f0ff;
-    --ink-dim: #b7a9e6;
-    --yellow: #fff200;
-    --pink: #ff2e93;
-    --cyan: #00e5ff;
-    --green: #39ff14;
-    --line: #000000;
-    --paper: #fdf6d8;
-    --paper-ink: #241456;
-    --danger: #ff3b3b;
+    --bloom-1: #ff6fb0;
+    --bloom-2: #ff9a5c;
+    --bloom-3: #ffc25c;
+    --card: rgba(255,255,255,0.94);
+    --card-2: #fff3ee;
+    --ink: #5c2a4d;
+    --ink-dim: #9a6b8c;
+    --plum: #5c2a4d;
+    --rose: #e63946;
+    --marigold: #f4a300;
+    --teal: #2a9d8f;
+    --sky: #457b9d;
+    --violet: #8338ec;
+    --paper: #fffaf3;
+    --paper-ink: #5c2a4d;
+    --paper-ink-dim: #b08aa3;
+    --danger: #e63946;
   }
 
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --bg: #eef0ff;
-      --bg-2: #ffffff;
-      --card: #ffffff;
-      --card-2: #f2eaff;
-      --ink: #1a0b3d;
-      --ink-dim: #5c4d8a;
-      --line: #000000;
+      --card: rgba(255,255,255,0.94);
+      --card-2: #fff3ee;
+      --ink: #5c2a4d;
+      --ink-dim: #9a6b8c;
     }
   }
   :root[data-theme="light"] {
-    --bg: #eef0ff;
-    --bg-2: #ffffff;
-    --card: #ffffff;
-    --card-2: #f2eaff;
-    --ink: #1a0b3d;
-    --ink-dim: #5c4d8a;
-    --line: #000000;
+    --card: rgba(255,255,255,0.94);
+    --card-2: #fff3ee;
+    --ink: #5c2a4d;
+    --ink-dim: #9a6b8c;
   }
   :root[data-theme="dark"] {
-    --bg: #0d0221;
-    --bg-2: #1a0b3d;
-    --card: #1a0b3d;
-    --card-2: #241456;
-    --ink: #f5f0ff;
-    --ink-dim: #b7a9e6;
-    --line: #000000;
+    --bloom-1: #d94f92;
+    --bloom-2: #d97a45;
+    --bloom-3: #d9a13f;
+    --card: rgba(44,20,38,0.92);
+    --card-2: #3a1f34;
+    --ink: #ffe9f4;
+    --ink-dim: #d9b3cc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bloom-1: #d94f92;
+      --bloom-2: #d97a45;
+      --bloom-3: #d9a13f;
+      --card: rgba(44,20,38,0.92);
+      --card-2: #3a1f34;
+      --ink: #ffe9f4;
+      --ink-dim: #d9b3cc;
+    }
   }
 
   * { box-sizing: border-box; }
   body {
     margin: 0;
     min-height: 100vh;
-    background:
-      radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--pink) 18%, transparent), transparent 55%),
-      radial-gradient(circle at 90% 15%, color-mix(in srgb, var(--cyan) 16%, transparent), transparent 50%),
-      var(--bg);
+    background: linear-gradient(135deg, var(--bloom-1) 0%, var(--bloom-2) 55%, var(--bloom-3) 100%);
     color: var(--ink);
-    font-family: "Space Mono", ui-monospace, monospace;
+    font-family: "Quicksand", ui-rounded, "Segoe UI", sans-serif;
   }
 
-  .comic { font-family: "Bangers", "Space Mono", cursive; letter-spacing: 0.02em; }
-  .term { font-family: "VT323", monospace; }
+  .display { font-family: "Fraunces", Georgia, serif; }
 
-  ::selection { background: var(--pink); color: #0d0221; }
+  ::selection { background: var(--violet); color: #fff; }
+
+  .arch {
+    position: relative;
+    height: 64px;
+    overflow: hidden;
+  }
+  .arch svg { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: min(680px, 100%); height: 64px; }
+  .petals {
+    text-align: center;
+    font-size: 1.4rem;
+    letter-spacing: 0.3em;
+    padding: 10px 0 0;
+    opacity: 0.9;
+  }
 
   .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 90px; }
 
@@ -75,128 +93,131 @@
     align-items: center;
     justify-content: space-between;
     gap: 14px;
-    margin-bottom: 32px;
+    margin: 8px 0 28px;
     flex-wrap: wrap;
   }
   .brand {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
-    transform: rotate(-2deg);
   }
   .brand .mark {
-    font-family: "Bangers", cursive;
-    font-size: 2.1rem;
-    color: var(--yellow);
-    -webkit-text-stroke: 2px #000;
-    text-shadow: 3px 3px 0 var(--pink), 6px 6px 0 rgba(0,0,0,0.5);
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(92,42,77,0.35);
     line-height: 1;
   }
   .brand .tag {
-    font-family: "VT323", monospace;
-    font-size: 1rem;
-    color: var(--cyan);
-    background: #000;
-    padding: 3px 8px;
-    border: 2px solid var(--cyan);
-    transform: rotate(2deg);
+    font-family: "Quicksand", sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.85;
   }
 
   nav.tabs {
     display: inline-flex;
-    gap: 8px;
-    transform: rotate(1deg);
+    gap: 6px;
+    background: rgba(255,255,255,0.35);
+    padding: 5px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
   }
   nav.tabs button {
-    font-family: "Bangers", cursive;
-    font-size: 1.1rem;
-    letter-spacing: 0.03em;
-    background: var(--card-2);
-    border: 3px solid var(--line);
-    color: var(--ink);
-    padding: 8px 18px;
-    border-radius: 10px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 9px 20px;
+    border-radius: 999px;
     cursor: pointer;
-    box-shadow: 4px 4px 0 var(--line);
-    transition: transform 0.1s, box-shadow 0.1s;
+    transition: background 0.2s, color 0.2s;
   }
-  nav.tabs button:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--line); }
+  nav.tabs button:hover:not(.active) { background: rgba(255,255,255,0.2); }
   nav.tabs button.active {
-    background: var(--yellow);
-    color: #0d0221;
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 var(--line);
+    background: #fff;
+    color: var(--plum);
   }
 
   section.view { display: none; }
-  section.view.active { display: block; animation: pop 0.35s cubic-bezier(.2,1.4,.4,1); }
-  @keyframes pop {
-    from { opacity: 0; transform: scale(0.94) rotate(-1deg); }
-    to { opacity: 1; transform: scale(1) rotate(0); }
+  section.view.active { display: block; animation: bloom 0.4s cubic-bezier(.2,1.2,.4,1); }
+  @keyframes bloom {
+    from { opacity: 0; transform: scale(0.96) translateY(6px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
   }
 
   h1.title {
-    font-family: "Bangers", cursive;
-    font-size: clamp(2.1rem, 6vw, 3rem);
-    color: var(--yellow);
-    -webkit-text-stroke: 2px #000;
-    text-shadow: 3px 3px 0 var(--pink);
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(2rem, 5.5vw, 2.8rem);
+    color: #fff;
+    text-shadow: 0 3px 14px rgba(92,42,77,0.3);
     margin: 0 0 10px;
-    transform: rotate(-1deg);
     text-wrap: balance;
   }
   p.sub {
-    margin: 0 0 28px;
-    color: var(--ink-dim);
-    font-family: "VT323", monospace;
-    font-size: 1.25rem;
-    max-width: 56ch;
-    line-height: 1.4;
+    margin: 0 0 26px;
+    color: #fff;
+    opacity: 0.92;
+    font-size: 1.05rem;
+    max-width: 54ch;
+    line-height: 1.5;
   }
 
   .card {
     background: var(--card);
-    border: 3px solid var(--line);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 7px 7px 0 var(--line);
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: 0 20px 50px -20px rgba(92,42,77,0.45);
+    backdrop-filter: blur(6px);
   }
-  .card + .card { margin-top: 22px; }
+  .card + .card { margin-top: 20px; }
 
   label {
     display: block;
-    font-family: "Bangers", cursive;
-    font-size: 1rem;
-    letter-spacing: 0.03em;
-    color: var(--cyan);
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--violet);
     margin-bottom: 8px;
   }
   .field { margin-bottom: 20px; }
   .field:last-child { margin-bottom: 0; }
   .hint {
-    font-family: "VT323", monospace;
-    font-size: 1.05rem;
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.88rem;
     color: var(--ink-dim);
-    margin-top: 6px;
-    line-height: 1.4;
+    margin-top: 7px;
+    line-height: 1.5;
   }
 
   input[type="text"], input[type="password"], textarea {
     width: 100%;
     background: var(--card-2);
-    border: 3px solid var(--line);
-    border-radius: 8px;
+    border: 2px solid transparent;
+    border-radius: 14px;
     color: var(--ink);
-    font-family: "Space Mono", monospace;
+    font-family: "Quicksand", sans-serif;
     font-size: 1rem;
-    padding: 12px 14px;
+    padding: 12px 16px;
     outline: none;
-    transition: box-shadow 0.15s, transform 0.15s;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
   textarea { min-height: 200px; resize: vertical; line-height: 1.6; }
   input:focus, textarea:focus {
-    box-shadow: 3px 3px 0 var(--pink);
-    transform: translate(-1px, -1px);
+    border-color: var(--violet);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--violet) 18%, transparent);
   }
   input::placeholder, textarea::placeholder { color: var(--ink-dim); opacity: 0.6; }
 
@@ -207,110 +228,107 @@
   .pwrow input { flex: 1; }
 
   button.ghost {
-    font-family: "Bangers", cursive;
-    font-size: 0.95rem;
-    background: var(--cyan);
-    border: 3px solid var(--line);
-    color: #0d0221;
-    padding: 0 16px;
-    border-radius: 8px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: var(--card-2);
+    border: 2px solid var(--violet);
+    color: var(--violet);
+    padding: 0 18px;
+    border-radius: 999px;
     cursor: pointer;
-    box-shadow: 3px 3px 0 var(--line);
     white-space: nowrap;
-    transition: transform 0.1s, box-shadow 0.1s;
+    transition: background 0.15s, color 0.15s;
   }
-  button.ghost:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--line); }
-  button.ghost:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--line); }
+  button.ghost:hover { background: var(--violet); color: #fff; }
 
   button.primary {
     width: 100%;
     margin-top: 24px;
-    font-family: "Bangers", cursive;
-    font-size: 1.3rem;
-    letter-spacing: 0.03em;
-    background: var(--pink);
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, var(--rose), var(--violet));
     color: #fff;
-    -webkit-text-stroke: 1px #000;
-    border: 3px solid var(--line);
-    border-radius: 10px;
-    padding: 14px;
+    border: none;
+    border-radius: 999px;
+    padding: 15px;
     cursor: pointer;
-    box-shadow: 5px 5px 0 var(--line);
-    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 12px 26px -10px color-mix(in srgb, var(--violet) 60%, transparent);
+    transition: transform 0.12s, box-shadow 0.12s;
   }
-  button.primary:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--line); }
-  button.primary:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--line); }
+  button.primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -10px color-mix(in srgb, var(--violet) 65%, transparent); }
+  button.primary:active { transform: translateY(0); }
   button.primary:disabled {
     background: var(--card-2);
     color: var(--ink-dim);
     cursor: not-allowed;
-    box-shadow: 3px 3px 0 var(--line);
+    box-shadow: none;
     transform: none;
   }
 
   .strength { display: flex; gap: 5px; margin-top: 9px; }
-  .strength i { flex: 1; height: 6px; border: 2px solid var(--line); border-radius: 3px; background: var(--card-2); }
+  .strength i { flex: 1; height: 5px; border-radius: 3px; background: var(--card-2); }
   .strength i.on0 { background: var(--danger); }
-  .strength i.on1 { background: #ff8c00; }
-  .strength i.on2 { background: var(--yellow); }
-  .strength i.on3 { background: var(--green); }
+  .strength i.on1 { background: var(--marigold); }
+  .strength i.on2 { background: var(--teal); }
+  .strength i.on3 { background: #38b06b; }
 
   .result { display: none; }
-  .result.show { display: block; animation: pop 0.35s cubic-bezier(.2,1.4,.4,1); }
+  .result.show { display: block; animation: bloom 0.4s cubic-bezier(.2,1.2,.4,1); }
   .seal-mini {
-    width: 40px; height: 40px;
+    width: 38px; height: 38px;
     border-radius: 50%;
-    background: var(--yellow);
-    border: 3px solid var(--line);
+    background: linear-gradient(135deg, var(--rose), var(--marigold));
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    color: #fff;
+    font-size: 1.05rem;
     flex: none;
-    transform: rotate(-8deg);
   }
   .link-box {
     display: flex;
     align-items: center;
     gap: 12px;
     background: var(--card-2);
-    border: 3px dashed var(--line);
-    border-radius: 10px;
+    border: 2px dashed var(--violet);
+    border-radius: 14px;
     padding: 14px 16px;
     margin-top: 6px;
   }
   .link-box .url {
     flex: 1;
-    font-family: "VT323", monospace;
-    font-size: 1.05rem;
-    color: var(--cyan);
+    font-family: "Quicksand", monospace;
+    font-size: 0.85rem;
+    color: var(--sky);
     word-break: break-all;
   }
   .callout {
-    font-family: "VT323", monospace;
-    font-size: 1.1rem;
+    font-size: 0.92rem;
     color: var(--ink-dim);
     margin-top: 16px;
-    line-height: 1.4;
-    border-left: 4px solid var(--pink);
+    line-height: 1.55;
+    border-left: 3px solid var(--rose);
     padding-left: 14px;
   }
-  .callout strong { color: var(--yellow); }
+  .callout strong { color: var(--plum); }
 
   .id-lookup { display: flex; gap: 10px; margin-bottom: 26px; }
   .id-lookup input { flex: 1; }
   .id-lookup button {
-    font-family: "Bangers", cursive;
-    font-size: 1.05rem;
-    background: var(--yellow);
-    border: 3px solid var(--line);
-    color: #0d0221;
-    padding: 0 22px;
-    border-radius: 8px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    background: linear-gradient(135deg, var(--rose), var(--violet));
+    border: none;
+    color: #fff;
+    padding: 0 24px;
+    border-radius: 999px;
     cursor: pointer;
-    box-shadow: 3px 3px 0 var(--line);
   }
-  .id-lookup button:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--line); }
+  .id-lookup button:hover { filter: brightness(1.08); }
 
   .envelope-stage {
     position: relative;
@@ -325,35 +343,32 @@
     max-width: 420px;
     aspect-ratio: 15 / 10;
     background: var(--card-2);
-    border: 4px solid var(--line);
-    border-radius: 14px;
-    box-shadow: 8px 8px 0 var(--line);
-    transform: rotate(-1.5deg);
+    border-radius: 20px;
+    box-shadow: 0 22px 46px -18px rgba(92,42,77,0.5);
   }
   .envelope::before {
     content: "";
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(135deg, transparent 49.2%, var(--line) 49.6%, var(--line) 50.4%, transparent 50.8%),
-      linear-gradient(45deg, transparent 49.2%, var(--line) 49.6%, var(--line) 50.4%, transparent 50.8%);
+      linear-gradient(135deg, transparent 49.2%, var(--rose) 49.6%, var(--rose) 50.4%, transparent 50.8%),
+      linear-gradient(45deg, transparent 49.2%, var(--rose) 49.6%, var(--rose) 50.4%, transparent 50.8%);
     background-size: 100% 62%, 100% 62%;
     background-position: top, top;
     background-repeat: no-repeat;
-    opacity: 0.55;
-    border-radius: 10px;
+    opacity: 0.3;
+    border-radius: 16px;
   }
   .seal {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%) rotate(2deg);
-    width: 82px;
-    height: 82px;
+    transform: translate(-50%, -50%);
+    width: 78px;
+    height: 78px;
     border-radius: 50%;
-    background: var(--yellow);
-    border: 4px solid var(--line);
-    box-shadow: 4px 4px 0 var(--line);
+    background: linear-gradient(135deg, var(--rose), var(--violet));
+    box-shadow: 0 10px 22px -8px rgba(92,42,77,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -361,15 +376,16 @@
     transition: transform 0.2s ease;
   }
   .seal .glyph {
-    font-family: "Bangers", cursive;
-    font-size: 2.1rem;
-    color: #0d0221;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 1.9rem;
+    color: #fff;
   }
-  .seal.crack { animation: boom 0.5s ease forwards; }
-  @keyframes boom {
-    0% { transform: translate(-50%, -50%) scale(1) rotate(2deg); }
-    30% { transform: translate(-50%, -50%) scale(1.25) rotate(-8deg); }
-    100% { transform: translate(-50%, -50%) scale(0) rotate(35deg); opacity: 0; }
+  .seal.crack { animation: burst 0.5s ease forwards; }
+  @keyframes burst {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    35% { transform: translate(-50%, -50%) scale(1.15) rotate(-6deg); }
+    100% { transform: translate(-50%, -50%) scale(0) rotate(20deg); opacity: 0; }
   }
 
   .unlock-panel { width: 100%; max-width: 340px; margin-top: 30px; }
@@ -377,19 +393,22 @@
   .lookup-meta {
     text-align: center;
     margin-top: 14px;
-    font-family: "VT323", monospace;
-    font-size: 1.1rem;
-    color: var(--ink-dim);
+    font-size: 0.9rem;
+    color: #fff;
+    opacity: 0.9;
   }
   .error-msg {
     display: none;
     text-align: center;
-    color: var(--danger);
-    font-family: "Bangers", cursive;
-    font-size: 1.15rem;
+    color: #fff;
+    background: var(--danger);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 0.85rem;
     margin-top: 12px;
   }
-  .error-msg.show { display: block; animation: shake 0.35s; }
+  .error-msg.show { display: inline-block; animation: shake 0.35s; }
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-6px) rotate(-2deg); }
@@ -403,29 +422,28 @@
     margin: 0 auto;
     background: var(--paper);
     color: var(--paper-ink);
-    border: 4px solid var(--line);
-    border-radius: 6px;
+    border-radius: 18px;
     padding: 40px 36px 32px;
-    box-shadow: 9px 9px 0 var(--line);
+    box-shadow: 0 26px 54px -20px rgba(92,42,77,0.55);
     position: relative;
-    transform: rotate(0.5deg);
   }
   .letter-paper.show { display: block; animation: unfold 0.5s cubic-bezier(.2,1.3,.3,1); }
   @keyframes unfold {
-    from { opacity: 0; transform: translateY(16px) scale(0.95) rotate(3deg); }
-    to { opacity: 1; transform: translateY(0) scale(1) rotate(0.5deg); }
+    from { opacity: 0; transform: translateY(16px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
   .letter-paper .from {
-    font-family: "VT323", monospace;
-    font-size: 1.15rem;
-    letter-spacing: 0.06em;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #5c4d8a;
+    color: var(--paper-ink-dim);
     margin-bottom: 16px;
   }
   .letter-paper .body-text {
-    font-family: "Space Mono", monospace;
-    font-size: 1.08rem;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.1rem;
     line-height: 1.75;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -433,9 +451,11 @@
   }
   .letter-paper .sign {
     margin-top: 26px;
-    font-family: "Bangers", cursive;
-    font-size: 1.4rem;
-    color: var(--pink);
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--rose);
     text-align: right;
   }
 
@@ -444,26 +464,26 @@
   .back-link button {
     background: none;
     border: none;
-    color: var(--cyan);
-    font-family: "Bangers", cursive;
-    font-size: 1rem;
+    color: #fff;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
     cursor: pointer;
+    opacity: 0.9;
   }
-  .back-link button:hover { color: var(--yellow); }
+  .back-link button:hover { opacity: 1; }
 
   footer.foot {
-    margin-top: 50px;
+    margin-top: 46px;
     text-align: center;
-    font-family: "VT323", monospace;
-    font-size: 1.1rem;
-    color: var(--pink);
-    opacity: 0.85;
+    font-size: 0.85rem;
+    color: #fff;
+    opacity: 0.8;
   }
 
   .link-len {
     margin-top: 8px;
-    font-family: "VT323", monospace;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--ink-dim);
     opacity: 0.85;
   }
@@ -478,7 +498,7 @@
     .brand .mark { font-size: 1.6rem; }
     nav.tabs { width: 100%; }
     nav.tabs button { flex: 1; padding: 9px 10px; font-size: 0.95rem; }
-    .card { padding: 18px; box-shadow: 5px 5px 0 var(--line); }
+    .card { padding: 20px; border-radius: 18px; }
     .row { flex-direction: column; gap: 0; }
     .pwrow { flex-direction: column; }
     button.ghost { width: 100%; padding: 12px 16px; }
@@ -487,7 +507,7 @@
     .link-box { flex-direction: column; align-items: stretch; text-align: center; }
     .envelope-stage { padding: 26px 0 16px; }
     .unlock-panel { max-width: 100%; }
-    .letter-paper { padding: 26px 18px 22px; box-shadow: 6px 6px 0 var(--line); }
+    .letter-paper { padding: 28px 20px 24px; border-radius: 16px; }
     .letter-paper .body-text { font-size: 1rem; }
   }
 </style>
@@ -495,77 +515,77 @@
 <div class="wrap">
   <header class="top">
     <div class="brand">
-      <span class="mark">LOL Letters</span>
-      <span class="tag">.exe</span>
+      <span class="mark">Petal Post</span>
+      <span class="tag">no peeking</span>
     </div>
     <nav class="tabs">
-      <button type="button" class="active" data-tab="write">Viết thư</button>
-      <button type="button" data-tab="read">Đọc thư</button>
+      <button type="button" class="active" data-tab="write">Write</button>
+      <button type="button" data-tab="read">Unwrap</button>
     </nav>
   </header>
 
   <!-- WRITE -->
   <section class="view active" id="view-write">
-    <h1 class="title">Chọc ghẹo ai đó đi!</h1>
-    <p class="sub">gõ vài dòng lầy lội, khoá lại bằng mật khẩu, quăng link cho nạn nhân — không đúng mật khẩu thì đừng hòng đọc.</p>
+    <h1 class="title">Go on, tease them a little</h1>
+    <p class="sub">Write something sweet (or a little wicked), lock it with a password, and send the link — nosy readers need not apply.</p>
 
     <div class="card">
       <div class="row">
         <div class="field">
-          <label for="w-to">Gửi đến</label>
+          <label for="w-to">To</label>
           <input type="text" id="w-to">
         </div>
         <div class="field">
-          <label for="w-from">Từ</label>
+          <label for="w-from">From</label>
           <input type="text" id="w-from">
         </div>
       </div>
 
       <div class="field">
-        <label for="w-body">Nội dung thư</label>
+        <label for="w-body">Your note</label>
         <textarea id="w-body"></textarea>
       </div>
 
       <div class="field">
-        <label for="w-pass">Mật khẩu niêm phong</label>
+        <label for="w-pass">Secret password</label>
         <div class="pwrow">
-          <input type="text" class="term" id="w-pass">
-          <button type="button" class="ghost" id="w-gen">random giùm</button>
+          <input type="text" id="w-pass">
+          <button type="button" class="ghost" id="w-gen">surprise me</button>
         </div>
         <div class="strength" id="w-strength">
           <i></i><i></i><i></i><i></i>
         </div>
-        <div class="hint">Ai không biết mật khẩu này thì chịu, không đọc được đâu. Gửi mật khẩu qua kênh khác nhé, đừng dại gửi chung link.</div>
+        <div class="hint">Only whoever knows this password gets to peek inside. Send it through a different channel than the link — don't spoil the fun.</div>
       </div>
 
-      <button type="button" class="primary" id="w-submit">NIÊM PHONG NGAY!!!</button>
+      <button type="button" class="primary" id="w-submit">Seal it with a wink</button>
     </div>
 
     <div class="card result" id="w-result">
       <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-        <span class="seal-mini">✦</span>
-        <div style="font-family:'Bangers',cursive; font-size:1.3rem; color:var(--yellow);">Xong! Thư đã bị niêm phong.</div>
+        <span class="seal-mini">✿</span>
+        <div class="display" style="font-size:1.25rem; font-style:italic; color:var(--plum);">Sealed! Off it goes.</div>
       </div>
-      <label>Link thư</label>
+      <label>Your link</label>
       <div class="link-box">
-        <span class="url term" id="w-url">—</span>
+        <span class="url" id="w-url">—</span>
         <button type="button" class="ghost" id="w-copy">copy</button>
       </div>
       <div class="link-len" id="w-len"></div>
       <div class="callout">
-        Link này chứa nguyên cục thư đã mã hoá — không lưu ở đâu cả, không cần đăng nhập. Gửi link cho <strong id="w-result-to">nạn nhân</strong>, gửi <strong>mật khẩu</strong> riêng qua chỗ khác. Thiếu 1 trong 2 là bó tay.
+        The whole note (encrypted) lives right inside this link — nothing stored anywhere, no sign-in needed. Send the link to <strong id="w-result-to">your lucky reader</strong>, and slip the <strong>password</strong> to them some other way. Missing either half and they're stuck guessing.
       </div>
     </div>
   </section>
 
   <!-- READ -->
   <section class="view" id="view-read">
-    <h1 class="title">Bóc thư xem sao</h1>
-    <p class="sub">dán link nhận được vào đây, gõ đúng mật khẩu để xem thiên hạ chọc gì mình.</p>
+    <h1 class="title">Someone's holding out on you</h1>
+    <p class="sub">Paste the link you were sent, guess the password (nosy), and see what they're too shy to say out loud.</p>
 
     <div class="id-lookup">
-      <input type="text" class="term" id="r-id" placeholder="dán link vào đây">
-      <button type="button" id="r-open">Mở</button>
+      <input type="text" id="r-id" placeholder="paste the link here">
+      <button type="button" id="r-open">Open</button>
     </div>
 
     <div class="envelope-stage" id="r-stage" style="display:none;">
@@ -574,29 +594,29 @@
       </div>
 
       <div class="unlock-panel" id="r-unlock">
-        <label for="r-pass">Mật khẩu</label>
+        <label for="r-pass">Password</label>
         <div class="pwrow">
-          <input type="password" class="term" id="r-pass" placeholder="••••••••">
-          <button type="button" class="ghost" id="r-toggle">hiện</button>
+          <input type="password" id="r-pass" placeholder="••••••••">
+          <button type="button" class="ghost" id="r-toggle">show</button>
         </div>
-        <button type="button" class="primary" id="r-submit">BÓC NGAY!!!</button>
-        <div class="error-msg" id="r-error">SAI RỒI! thử lại đi.</div>
+        <button type="button" class="primary" id="r-submit">Unwrap it</button>
+        <div class="error-msg" id="r-error">Nope, try again.</div>
         <div class="lookup-meta" id="r-meta"></div>
       </div>
 
       <div class="letter-paper" id="r-letter">
-        <div class="from" id="r-letter-meta">TỪ —</div>
+        <div class="from" id="r-letter-meta">FROM —</div>
         <div class="body-text" id="r-letter-body"></div>
         <div class="sign" id="r-letter-sign"></div>
       </div>
 
       <div class="back-link" id="r-back">
-        <button type="button" id="r-reset">← bóc thư khác</button>
+        <button type="button" id="r-reset">← unwrap another one</button>
       </div>
     </div>
   </section>
 
-  <footer class="foot">mỗi bức thư một dấu niêm phong riêng — hông có mật khẩu, hông mở được đâu nha</footer>
+  <footer class="foot">every letter gets its own little lock — no password, no peeking, sorry not sorry</footer>
 </div>
 
 <script>
@@ -741,7 +761,7 @@
     if (!pass) { wPass.focus(); return; }
 
     btn.disabled = true;
-    btn.textContent = "đang niêm phong...";
+    btn.textContent = "sealing...";
 
     try {
       var token = await sealLetter(pass, {
@@ -753,15 +773,15 @@
 
       var url = location.origin + location.pathname + "#" + token;
       document.getElementById("w-url").textContent = url;
-      document.getElementById("w-len").textContent = url.length + " ký tự · không lưu server nào, chỉ nằm trong link này";
-      document.getElementById("w-result-to").textContent = to || "nạn nhân";
+      document.getElementById("w-len").textContent = url.length + " characters · nothing stored anywhere, it's all in this link";
+      document.getElementById("w-result-to").textContent = to || "your reader";
       document.getElementById("w-result").classList.add("show");
       document.getElementById("w-result").scrollIntoView({ behavior: "smooth", block: "nearest" });
     } catch (err) {
-      alert("Ơ kìa lỗi rồi, thử lại xem sao.");
+      alert("Oops, that didn't work. Give it another go?");
     } finally {
       btn.disabled = false;
-      btn.textContent = "NIÊM PHONG NGAY!!!";
+      btn.textContent = "Seal it with a wink";
     }
   });
 
@@ -787,13 +807,13 @@
     stage.style.display = "flex";
 
     if (!token) {
-      meta.textContent = "Link này... sai sai à nha.";
+      meta.textContent = "That link looks a little... off.";
       document.getElementById("r-unlock").style.display = "none";
       return;
     }
 
     currentToken = token;
-    meta.textContent = "một quả thư đang chờ bị bóc";
+    meta.textContent = "a little something is waiting to be unwrapped";
     document.getElementById("r-pass").value = "";
     document.getElementById("r-pass").focus();
   }
@@ -810,7 +830,7 @@
     var input = document.getElementById("r-pass");
     var show = input.type === "password";
     input.type = show ? "text" : "password";
-    this.textContent = show ? "ẩn" : "hiện";
+    this.textContent = show ? "hide" : "show";
   });
 
   async function tryUnlock() {
@@ -822,7 +842,7 @@
 
     var btn = document.getElementById("r-submit");
     btn.disabled = true;
-    btn.textContent = "đang thử...";
+    btn.textContent = "trying...";
 
     try {
       var letter = await openLetterToken(pass, currentToken);
@@ -833,8 +853,8 @@
         document.getElementById("r-unlock").style.display = "none";
         var letterEl = document.getElementById("r-letter");
         document.getElementById("r-letter-meta").textContent =
-          "TỪ " + (letter.from ? letter.from.toUpperCase() : "MỘT ĐỨA GIẤU TÊN") +
-          (letter.to ? " · GỬI " + letter.to.toUpperCase() : "");
+          "FROM " + (letter.from ? letter.from.toUpperCase() : "A MYSTERIOUS SOMEONE") +
+          (letter.to ? " · TO " + letter.to.toUpperCase() : "");
         document.getElementById("r-letter-body").textContent = letter.body;
         document.getElementById("r-letter-sign").textContent = letter.from ? "— " + letter.from : "";
         letterEl.classList.add("show");
@@ -846,7 +866,7 @@
       document.getElementById("r-pass").select();
     } finally {
       btn.disabled = false;
-      btn.textContent = "BÓC NGAY!!!";
+      btn.textContent = "Unwrap it";
     }
   }
 
