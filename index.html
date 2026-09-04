@@ -72,21 +72,26 @@
 
   ::selection { background: var(--violet); color: #fff; }
 
-  .arch {
-    position: relative;
-    height: 64px;
-    overflow: hidden;
+  .bloom-border {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.95;
   }
-  .arch svg { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: min(680px, 100%); height: 64px; }
-  .petals {
-    text-align: center;
-    font-size: 1.4rem;
-    letter-spacing: 0.3em;
-    padding: 10px 0 0;
-    opacity: 0.9;
-  }
+  .bloom-border.top { top: 0; }
+  .bloom-border.bottom { bottom: 0; transform: scaleY(-1); }
+  .bloom-border svg { display: block; width: 100%; height: auto; }
 
-  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 90px; }
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 108px 20px 140px;
+  }
 
   header.top {
     display: flex;
@@ -493,7 +498,7 @@
   }
 
   @media (max-width: 640px) {
-    .wrap { padding: 24px 14px 60px; }
+    .wrap { padding: 64px 14px 84px; }
     header.top { margin-bottom: 24px; }
     .brand .mark { font-size: 1.6rem; }
     nav.tabs { width: 100%; }
@@ -511,6 +516,125 @@
     .letter-paper .body-text { font-size: 1rem; }
   }
 </style>
+
+<div class="bloom-border top" aria-hidden="true">
+  <svg viewBox="0 0 1400 190" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="petalPink" cx="35%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#ffe3ef"/>
+        <stop offset="55%" stop-color="#ff9dc4"/>
+        <stop offset="100%" stop-color="#e6538f"/>
+      </radialGradient>
+      <radialGradient id="petalCream" cx="35%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#fffdf5"/>
+        <stop offset="60%" stop-color="#fff0d6"/>
+        <stop offset="100%" stop-color="#f4c869"/>
+      </radialGradient>
+      <radialGradient id="petalRed" cx="35%" cy="28%" r="75%">
+        <stop offset="0%" stop-color="#ff8c7a"/>
+        <stop offset="55%" stop-color="#e6483f"/>
+        <stop offset="100%" stop-color="#a4201e"/>
+      </radialGradient>
+      <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#c9e6c2"/>
+        <stop offset="100%" stop-color="#6fa66a"/>
+      </linearGradient>
+    </defs>
+
+    <!-- trailing vines -->
+    <path d="M0 20 C 120 60, 220 10, 340 55 S 560 90, 680 45" fill="none" stroke="#7fb37a" stroke-width="3" opacity="0.55"/>
+    <path d="M700 40 C 820 85, 950 25, 1080 60 S 1300 30, 1400 55" fill="none" stroke="#7fb37a" stroke-width="3" opacity="0.55"/>
+
+    <!-- scattered leaves -->
+    <g fill="url(#leafGrad)" opacity="0.9">
+      <ellipse cx="90" cy="35" rx="22" ry="11" transform="rotate(-25 90 35)"/>
+      <ellipse cx="150" cy="60" rx="26" ry="12" transform="rotate(15 150 60)"/>
+      <ellipse cx="260" cy="30" rx="20" ry="10" transform="rotate(40 260 30)"/>
+      <ellipse cx="420" cy="70" rx="24" ry="12" transform="rotate(-10 420 70)"/>
+      <ellipse cx="520" cy="35" rx="22" ry="11" transform="rotate(30 520 35)"/>
+      <ellipse cx="640" cy="65" rx="26" ry="13" transform="rotate(-20 640 65)"/>
+      <ellipse cx="780" cy="40" rx="22" ry="11" transform="rotate(20 780 40)"/>
+      <ellipse cx="900" cy="70" rx="26" ry="13" transform="rotate(-30 900 70)"/>
+      <ellipse cx="1020" cy="30" rx="20" ry="10" transform="rotate(10 1020 30)"/>
+      <ellipse cx="1160" cy="65" rx="24" ry="12" transform="rotate(-15 1160 65)"/>
+      <ellipse cx="1290" cy="35" rx="22" ry="11" transform="rotate(25 1290 35)"/>
+    </g>
+
+    <!-- rose (multi-petal) helper reused via <use> -->
+    <g id="rose">
+      <circle r="30" fill="url(#petalPink)"/>
+      <circle r="21" fill="#f6b6d1" opacity="0.85"/>
+      <circle r="12" fill="#e6538f" opacity="0.9"/>
+    </g>
+    <g id="daisy">
+      <circle r="26" fill="url(#petalCream)"/>
+      <circle r="9" fill="#8a5a2a"/>
+    </g>
+    <g id="poppy">
+      <circle r="27" fill="url(#petalRed)"/>
+      <circle r="10" fill="#4a1a12"/>
+    </g>
+
+    <use href="#rose" x="130" y="80"/>
+    <use href="#daisy" x="330" y="60" transform="scale(0.85)" />
+    <use href="#poppy" x="500" y="90"/>
+    <use href="#rose" x="700" y="55" transform="scale(0.9)"/>
+    <use href="#daisy" x="880" y="85"/>
+    <use href="#rose" x="1080" y="65"/>
+    <use href="#poppy" x="1250" y="90" transform="scale(0.85)"/>
+  </svg>
+</div>
+
+<div class="bloom-border bottom" aria-hidden="true">
+  <svg viewBox="0 0 1400 190" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="petalPink2" cx="35%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#ffe3ef"/>
+        <stop offset="55%" stop-color="#ff9dc4"/>
+        <stop offset="100%" stop-color="#e6538f"/>
+      </radialGradient>
+      <radialGradient id="petalCream2" cx="35%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#fffdf5"/>
+        <stop offset="60%" stop-color="#fff0d6"/>
+        <stop offset="100%" stop-color="#f4c869"/>
+      </radialGradient>
+      <linearGradient id="leafGrad2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#c9e6c2"/>
+        <stop offset="100%" stop-color="#6fa66a"/>
+      </linearGradient>
+    </defs>
+
+    <path d="M0 25 C 140 70, 240 15, 380 50 S 600 85, 720 40" fill="none" stroke="#7fb37a" stroke-width="3" opacity="0.5"/>
+    <path d="M740 45 C 860 90, 1000 20, 1120 55 S 1300 25, 1400 50" fill="none" stroke="#7fb37a" stroke-width="3" opacity="0.5"/>
+
+    <g fill="url(#leafGrad2)" opacity="0.85">
+      <ellipse cx="70" cy="40" rx="20" ry="10" transform="rotate(20 70 40)"/>
+      <ellipse cx="200" cy="65" rx="24" ry="12" transform="rotate(-15 200 65)"/>
+      <ellipse cx="380" cy="30" rx="22" ry="11" transform="rotate(35 380 30)"/>
+      <ellipse cx="560" cy="65" rx="24" ry="12" transform="rotate(-25 560 65)"/>
+      <ellipse cx="760" cy="35" rx="20" ry="10" transform="rotate(15 760 35)"/>
+      <ellipse cx="940" cy="65" rx="24" ry="12" transform="rotate(-20 940 65)"/>
+      <ellipse cx="1140" cy="35" rx="22" ry="11" transform="rotate(25 1140 35)"/>
+      <ellipse cx="1300" cy="60" rx="20" ry="10" transform="rotate(-10 1300 60)"/>
+    </g>
+
+    <g id="rose2">
+      <circle r="26" fill="url(#petalPink2)"/>
+      <circle r="18" fill="#f6b6d1" opacity="0.85"/>
+      <circle r="10" fill="#e6538f" opacity="0.9"/>
+    </g>
+    <g id="daisy2">
+      <circle r="23" fill="url(#petalCream2)"/>
+      <circle r="8" fill="#8a5a2a"/>
+    </g>
+
+    <use href="#daisy2" x="160" y="65"/>
+    <use href="#rose2" x="420" y="85"/>
+    <use href="#daisy2" x="660" y="55"/>
+    <use href="#rose2" x="900" y="80" transform="scale(0.9)"/>
+    <use href="#daisy2" x="1160" y="60"/>
+  </svg>
+</div>
 
 <div class="wrap">
   <header class="top">
